@@ -63,23 +63,24 @@ app.get('/callback', (req, res) => {
       Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64')}`,
     },
   })
-      .then(response => {
+  .then(response => {
     if (response.status === 200) {
 
-      const { access_token, token_type } = response.data;
+      const { access_token, refresh_token } = response.data;
 
-      const { refresh_token } = response.data;
+      // redirect to react app
+      // pass tokens in query params
 
-        axios.get(`http://localhost:888/refresh_token?refresh_token=${refresh_token}`)
-          .then(response => {
-            res.send(`<pre>${JSON.stringify(response.data, null, 2)}</pre>`);
-          })
-          .catch(error => {
-            res.send(error);
-          });
+      res.redirect('http://localhost:5173/?' + 
+      querystring.stringify({
+
+        access_token,
+        refresh_token
+
+      }));   
 
     } else {
-      res.send(response);
+      res.redirect(`/?${querystring.stringify({ error: 'invalid_token' })}`);
     }
   })
   .catch(error => {
