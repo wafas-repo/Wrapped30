@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const LOCALSTORAGE_KEYS = {
-    access_token: 'spotify_access_token',
+    accessToken: 'spotify_access_token',
     refreshToken: 'spotify_refresh_token',
     expireTime: 'spotify_token_expire_time',
     timestamp: 'spotify_token_timestamp',
@@ -17,8 +17,8 @@ const LOCALSTORAGE_VALUES = {
 
 export const logout = () => {
     // clear local storage
-    for (const property in LOCALSTORAGE_KEYS) {
-        window.localStorage.removeItem(LOCALSTORAGE_KEYS[property]);
+    for (const key in LOCALSTORAGE_KEYS) {
+        window.localStorage.removeItem(LOCALSTORAGE_KEYS[key]);
     }
     // go to homepage
     window.location = window.location.origin;
