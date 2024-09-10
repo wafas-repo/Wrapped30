@@ -2,11 +2,21 @@ import { useEffect, useState } from 'react'
 import { accessToken, logout, getCurrentUserProfile } from './spotify';
 import { catchErrors } from './utils';
 import { Route, Routes } from 'react-router-dom';
-import './App.css'
+import styled  from 'styled-components'
+import { GlobalStyle } from './styles';
 
 function App() {
   const [token, setToken] = useState(null)
   const [profile, setProfile] = useState(null)
+
+  const StyledLoginButton = styled.a`
+    background-color: var(--green);
+    color: var(--white);
+    padding: 10px 20px;
+    margin: 20px auto;
+    border-radius: 30px;
+    display: inline-block;
+  `;
 
   useEffect(() => {
     setToken(accessToken)
@@ -20,8 +30,9 @@ function App() {
   }, [])
   return (
     <>
+      <GlobalStyle />
       {!token ? (
-      <a href="http://localhost:888/login"> log in to Spotify</a>
+      <StyledLoginButton href="http://localhost:888/login"> log in to Spotify</StyledLoginButton>
       ) : (
         <>
 
