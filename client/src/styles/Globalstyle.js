@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100%;
     max-width: 100%;
+    display: block;
     min-height: 100%;
     overflow-x: hidden;
     -moz-osx-font-smoothing: grayscale;
