@@ -10,7 +10,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
-const port = 888;
+const port = 8888;
 
 /**
  * Generates a random string containing numbers and letters
@@ -86,6 +86,8 @@ app.get('/callback', (req, res) => {
 });
 
 
+
+
 app.get('/refresh_token', (req, res) => {
   const { refresh_token } = req.query;
 
@@ -107,4 +109,8 @@ app.get('/refresh_token', (req, res) => {
     .catch(error => {
       res.send(error);
     });
+});
+
+app.listen(port, () => {
+    console.log(`Express app listening at http://localhost:${port}`);
 });
