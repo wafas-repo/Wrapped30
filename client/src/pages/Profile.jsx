@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react';
 import { catchErrors } from '../utils';
-import { getCurrentUserProfile } from '../spotify';
+import { getCurrentUserProfile, getTopArtists } from '../spotify';
 import { HeaderStyles } from '../styles';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
+  const [topArtists, setTopArtists] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await getCurrentUserProfile();
-      setProfile(data);
+      const userProfile = await getCurrentUserProfile();
+      setProfile(userProfile.data);
+
+      const userTopArtists = await getTopArtists();
+      setTopArtists(userTopArtists.data)
+
+      console.log(userTopArtists.data)
     };
 
     catchErrors(fetchData());
@@ -22,9 +28,6 @@ const Profile = () => {
         <>
           <HeaderStyles type="user">
             <div className="header__inner">
-              {/* {profile.images.length && profile.images[0].url && (
-                <img className="header__img" src={profile.images[0].url} alt="Avatar"/>
-              )} */}
               <div>
                 <div className="header__overline">Welcome</div>
                 <h1 className="header__name"> {profile.display_name}</h1>

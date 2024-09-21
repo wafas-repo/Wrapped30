@@ -54,7 +54,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  button {
+  /* button {
     border: 0;
     cursor: pointer;
     font-family: inherit;
@@ -70,7 +70,7 @@ const GlobalStyle = createGlobalStyle`
       background-color: var(--dark-grey);
       outline: 0;
     }
-  }
+  } */
 
   img {
     
