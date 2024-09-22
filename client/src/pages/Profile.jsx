@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { catchErrors } from '../utils';
 import { getCurrentUserProfile, getTopArtists } from '../spotify';
 import { HeaderStyles } from '../styles';
+import Artists from '../components/Artists';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -22,7 +23,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <>
+  
       <>
       {profile && (
         <>
@@ -41,8 +42,14 @@ const Profile = () => {
           </HeaderStyles>
         </>
       )}
+
+      { topArtists && (
+        <main>
+          <Artists artists={topArtists.items.slice(0, 10) } />
+        </main>
+      )}
     </>
-    </>
+    
   )
 };
 

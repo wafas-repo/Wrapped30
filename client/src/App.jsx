@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { accessToken, logout } from './spotify';
 import { Route, Routes } from 'react-router-dom';
-import { GlobalStyle } from './styles';
-import {Login, Profile} from './pages';
+import GlobalStyle from './styles/Globalstyle'
+import Login from './pages/login'
+import Profile from './pages/Profile';
 import styled from 'styled-components';
 
 const StyledLogoutButton = styled.button`
@@ -22,7 +23,7 @@ const StyledLogoutButton = styled.button`
 `;
 
 function App() {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
 
   useEffect(() => {
     setToken(accessToken)
