@@ -1,22 +1,24 @@
 /* eslint-disable react/prop-types */
 
+import { ArtistsWrapper, ArtistCard, ArtistName, ArtistInfo, ArtistImage, ArtistRank, NoArtists } from "./Artists.styles";
+
 const Artists = ({ artists }) => {
   return (
-    <div>
+     <ArtistsWrapper>
       {artists && artists.length > 0 ? (
         artists.map((artist, index) => (
-          <div className="artist" key={index}>
-            <img src={artist.images[0].url} alt={artist.name} />
-            <div className="artist-info">
-              <h3>{artist.name}</h3>
-              <p>{`Rank #${index + 1}`}</p>
-            </div>
-          </div>
+          <ArtistCard key={artist.id}>
+            <ArtistImage src={artist.images[0].url} alt={artist.name} />
+            <ArtistInfo>
+              <ArtistName>{artist.name}</ArtistName>
+              <ArtistRank>{`Rank #${index + 1}`}</ArtistRank>
+            </ArtistInfo>
+          </ArtistCard>
         ))
       ) : (
-        <p>No artists available</p>
+        <NoArtists>No artists available</NoArtists>
       )}
-    </div>
+    </ArtistsWrapper>
   );
 };
 
