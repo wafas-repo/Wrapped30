@@ -116,9 +116,18 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 export const getCurrentUserProfile = () => axios.get('/me');
 
 /**
- * Get a User's Top Artists and Tracks
+ * Get a User's Top Artists
  * time_range allows us to retrieve data up to the last 4 weeks 
  */
 export const getTopArtists = (time_range = 'short_term') => {
   return axios.get(`/me/top/artists?time_range=${time_range}`);
+};
+
+/**
+ * Get a User's Top Tracks
+ * time_range allows us to retrieve data up to the last 4 weeks 
+ */
+
+ export const getTopTracks = (time_range = 'short_term') => {
+  return axios.get(`/me/top/tracks?time_range=${time_range}`);
 };

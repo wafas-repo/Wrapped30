@@ -13,7 +13,7 @@ const Artists = ({ artists }) => {
               <ArtistName>{artist.name}</ArtistName>
               <ArtistRank>{`Rank #${index + 1}`}</ArtistRank>
             </ArtistInfo>
-          </ArtistCard>
+          </ArtistCard> 
         ))
       ) : (
         <NoArtists>No artists available</NoArtists>
