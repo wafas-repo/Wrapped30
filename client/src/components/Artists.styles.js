@@ -37,6 +37,7 @@ export const ArtistInfo = styled.div`
 export const ArtistName = styled.h3`
   font-size: 1.1em;
   margin: 0;
+  color: black;
 `;
 
 export const ArtistRank = styled.p`

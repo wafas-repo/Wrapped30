@@ -1,36 +1,64 @@
 import { useState, useEffect } from 'react';
 import { catchErrors } from '../utils';
-import { getCurrentUserProfile, getTopArtists, getTopTracks } from '../spotify';
-import { HeaderStyles } from '../styles';
+import { getCurrentUserProfile, getTopArtists } from '../spotify';
+import { HeaderStyles, NavStyles } from '../styles';
 import Artists from '../components/Artists';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
-  const [topTracks, setTopTracks] = useState(null);
+//   const [topTracks, setTopTracks] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       const userProfile = await getCurrentUserProfile();
       setProfile(userProfile.data);
 
+      console.log(profile)
+
       const userTopArtists = await getTopArtists();
+      console.log(userTopArtists)
       setTopArtists(userTopArtists.data)
 
       console.log('top artists', topArtists)
 
-      const userTopTracks = await getTopTracks();
-      setTopTracks(userTopTracks.data)
+    //   const userTopTracks = await getTopTracks();
+    //   setTopTracks(userTopTracks.data)
 
-      console.log('top tracks', topTracks)
+    //   console.log('top tracks', topTracks)
     };
 
     catchErrors(fetchData());
   }, []);
 
+//   const StyledLogoutButton = styled.button`
+//   position: absolute;
+//   top: var(--spacing-sm);
+//   right: var(--spacing-md);
+//   padding: var(--spacing-xs) var(--spacing-sm);
+//   background-color: rgba(0,0,0,.7);
+//   color: var(--white);
+//   font-size: var(--fz-sm);
+//   font-weight: 700;
+//   border-radius: var(--border-radius-pill);
+//   z-index: 10;
+//   @media (min-width: 768px) {
+//     right: var(--spacing-lg);
+//   }
+// `;
+
   return (
   
       <>
+        <NavStyles>
+            <nav>
+                {/* <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton> */}
+                <img src={profile.images[0].url} alt="profile-pic" className='profile-pic' />
+                
+            </nav>
+        </NavStyles>
+
+
       {profile && (
         <>
           <HeaderStyles type="user">
@@ -56,9 +84,9 @@ const Profile = () => {
           <Artists artists={topArtists.items.slice(0, 10) } />
         </div>
       )}
-      <h1>Top Tracks</h1>
+      {/* <h1>Top Tracks</h1> */}
 
-      { topTracks && (
+      {/* { topTracks && (
         <div>
           {topTracks.items.slice(0, 10).map((track, index) => (
             <div key={track.id} style={{ marginBottom: '20px' }}>
@@ -75,7 +103,7 @@ const Profile = () => {
             </div>
           ))}
         </div>
-      )}
+      )} */}
 
     </>
     

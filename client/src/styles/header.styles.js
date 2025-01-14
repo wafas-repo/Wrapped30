@@ -9,10 +9,12 @@ const StyledHeader = styled.header`
   height: 30vh;
   max-height: 500px;
   min-height: 250px;
+  width: 80vw;
+  border-radius: 30px;
 
-  @media (min-width: 768px) {
+  /* @media (min-width: 768px) {
     min-height: 340px;
-  }
+  } */
 
   &:after {
     content: '';
