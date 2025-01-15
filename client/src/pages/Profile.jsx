@@ -3,6 +3,7 @@ import { catchErrors } from '../utils';
 import { getCurrentUserProfile, getTopArtists } from '../spotify';
 import { HeaderStyles, NavStyles } from '../styles';
 import Artists from '../components/Artists';
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -53,7 +54,24 @@ const Profile = () => {
         <NavStyles>
             <nav>
                 {/* <StyledLogoutButton onClick={logout}>Log Out</StyledLogoutButton> */}
-                <img src={profile.images[0].url} alt="profile-pic" className='profile-pic' />
+                {profile && profile.images && (
+                    <>
+                        <img src={profile.images[0].url} alt="profile-pic" className='profile-pic' />
+                        <RiArrowDropDownLine size={30} />
+                    </>
+                )}
+                <div className='sub-menu-wrap'>
+                    <div className='sub-menu'>
+                        <a href="#" className='sub-menu-link'>
+                            <p>Settings</p>
+                        </a>
+                        <hr />
+                        <a href="#" className='sub-menu-link'>
+                            <p>Logout</p>
+                        </a>
+                    </div>
+                </div>
+                
                 
             </nav>
         </NavStyles>
