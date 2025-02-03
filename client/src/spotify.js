@@ -42,12 +42,14 @@ const hasTokenExpired = () => {
 const refreshToken = async () => {
   try {
     // Logout if there's no refresh token stored or we've managed to get into a reload infinite loop
-    if (!LOCALSTORAGE_VALUES.refreshToken ||
-      LOCALSTORAGE_VALUES.refreshToken === 'undefined' ||
-      (Date.now() - Number(LOCALSTORAGE_VALUES.timestamp) / 1000) < 1000
+    if (!LOCALSTORAGE_VALUES.refreshToken || 
+        LOCALSTORAGE_VALUES.refreshToken === 'undefined' || 
+        LOCALSTORAGE_VALUES.refreshToken === '' ||
+      (Date.now() - Number(LOCALSTORAGE_VALUES.timestamp)) / 1000 < 1000
     ) {
       console.error('No refresh token available');
       logout();
+      return;
     }
 
     // Use `/refresh_token` endpoint from our Node app

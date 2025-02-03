@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledNav = styled.header`
+const StyledNav = styled.nav`
 
     nav {
         background: #1a1a1a;
@@ -24,8 +24,10 @@ const StyledNav = styled.header`
         top: 100%;
         right: 0%;
         width: 200px;
-        z-index: 1;
         border: white solid 1px;
+        z-index: 1;
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
     }
 
     .sub-menu {
@@ -50,6 +52,10 @@ const StyledNav = styled.header`
             width: 100%;
             
         }
+    }
+
+    .sub-menu-link:hover p {
+        font-weight: 600;
     }
 
 `;

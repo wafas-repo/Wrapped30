@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { catchErrors } from '../utils';
-import { getCurrentUserProfile, getTopArtists } from '../spotify';
+import { getCurrentUserProfile, getTopArtists, logout } from '../spotify';
 import { HeaderStyles, NavStyles } from '../styles';
 import Artists from '../components/Artists';
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -9,6 +9,9 @@ const Profile = () => {
   const [profile, setProfile] = useState(null);
   const [topArtists, setTopArtists] = useState(null);
 //   const [topTracks, setTopTracks] = useState(null);
+    const [showSubMenu, setShowSubMenu] = useState(false)
+
+    var onExpand = () => setShowSubMenu(!showSubMenu)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,21 +35,6 @@ const Profile = () => {
     catchErrors(fetchData());
   }, []);
 
-//   const StyledLogoutButton = styled.button`
-//   position: absolute;
-//   top: var(--spacing-sm);
-//   right: var(--spacing-md);
-//   padding: var(--spacing-xs) var(--spacing-sm);
-//   background-color: rgba(0,0,0,.7);
-//   color: var(--white);
-//   font-size: var(--fz-sm);
-//   font-weight: 700;
-//   border-radius: var(--border-radius-pill);
-//   z-index: 10;
-//   @media (min-width: 768px) {
-//     right: var(--spacing-lg);
-//   }
-// `;
 
   return (
   
@@ -57,20 +45,20 @@ const Profile = () => {
                 {profile && profile.images && (
                     <>
                         <img src={profile.images[0].url} alt="profile-pic" className='profile-pic' />
-                        <RiArrowDropDownLine size={30} />
+                        <RiArrowDropDownLine size={30} onClick={onExpand} />
                     </>
                 )}
-                <div className='sub-menu-wrap'>
+                { showSubMenu && <div className='sub-menu-wrap'>
                     <div className='sub-menu'>
                         <a href="#" className='sub-menu-link'>
                             <p>Settings</p>
                         </a>
                         <hr />
                         <a href="#" className='sub-menu-link'>
-                            <p>Logout</p>
+                            <p onClick={logout} >logout</p>
                         </a>
                     </div>
-                </div>
+                </div> }
                 
                 
             </nav>
