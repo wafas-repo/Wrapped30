@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import GlobalStyle from './styles/Globalstyle'
 import Login from './pages/login'
 import Profile from './pages/Profile';
-
+import './App.css'
 
 function App() {
   const [token, setToken] = useState(null);
